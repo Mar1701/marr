@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Form Peminatan</title>
+  <style>
+    /* Reset ringan */
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 0;
+      padding: 24px;
+      background: linear-gradient(180deg,#f6fbff,#f0f6fa);
+      color: #203040;
+    }
+
+    .card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 6px 24px rgba(20,40,80,0.08);
+    }
+
+    h1 { margin-top: 0; font-size: 1.4rem; color: #b33e5a; }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+
+    input[type="text"],
+    input[type="password"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d6e0ea;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color .15s, box-shadow .15s;
+      background: #fbfdff;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #7aa7d9;
+      box-shadow: 0 0 0 4px rgba(122,167,217,0.12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    /* styling untuk radio & checkbox area */
+    .group {
+      padding: 12px;
+      border: 1px dashed #e6eef6;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+    .option {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    /* tombol submit */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(180deg,#ff6b88,#d94b6a);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(217,75,106,0.18);
+      transition: transform .08s ease, box-shadow .12s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(217,75,106,0.2); }
+    .muted { font-size: 0.9rem; color: #6b7b89; }
+
+    .small { font-size: 0.9rem; }
+    .flex-between { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Tugas Individu — Form HTML</h1>
+    <p class="muted"></p>
+
+    <form id="tugasForm" action="#" method="post" onsubmit="handleSubmit(event)">
+      <!-- TEXT -->
+      <div>
+        <label for="nama">Nama lengkap </label>
+        <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required />
+      </div>
+
+      <!-- PASSWORD -->
+      <div>
+        <label for="kataSandi">Kata sandi </label>
+        <input type="password" id="kataSandi" name="kataSandi" placeholder="Kata sandi" minlength="6" required />
+        <div class="small muted">Minimal 6 karakter.</div>
+      </div>
+
+      <!-- TEXTAREA -->
+      <div>
+        <label for="bio">Deskripsi singkat </label>
+        <textarea id="bio" name="bio" placeholder="Ceritakan tentang diri Anda..." maxlength="500"></textarea>
+      </div>
+
+      <!-- RADIO BUTTON -->
+      <div>
+        <label>Jenis kelamin </label>
+        <div class="group" role="radiogroup" aria-label="Jenis kelamin">
+          <div class="option">
+            <input type="radio" id="genderL" name="gender" value="L" required />
+            <label for="genderL">Laki-laki</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="genderP" name="gender" value="P" />
+            <label for="genderP">Perempuan</label>
+          </div>
+          <div class="option">
+            <input type="radio" id="genderOther" name="gender" value="Other" />
+            <label for="genderOther">Lainnya</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHECKBOX -->
+      <div>
+        <label>Minat </label>
+        <div class="group" aria-label="Minat">
+          <div class="option">
+            <input type="checkbox" id="minatWeb" name="minat" value="Web" />
+            <label for="minatWeb">Web Development</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="minatData" name="minat" value="Data" />
+            <label for="minatData">Data Science</label>
+          </div>
+          <div class="option">
+            <input type="checkbox" id="minatDesign" name="minat" value="Design" />
+            <label for="minatDesign">Design UI/UX</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SELECT OPTION -->
+      <div>
+        <label for="country">Negara </label>
+        <select id="country" name="country" required>
+          <option value="">-- Pilih negara --</option>
+          <option value="id">Indonesia</option>
+          <option value="my">Malaysia</option>
+          <option value="sg">Singapura</option>
+          <option value="other">Lainnya</option>
+        </select>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="flex-between">
+        <div class="muted">Dengan mengirim, Anda menyetujui syarat.</div>
+        <button type="submit" class="btn">Kirim</button> 
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Menangani submit hanya untuk demo (agar tidak reload)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      // ambil semua nilai (catatan: checkbox dengan nama sama hanya mengembalikan satu => gunakan getAll jika perlu)
+      const out = {
+        nama: data.get('nama'),
+        kataSandi: data.get('kataSandi') ? '••••••' : '',
+        bio: data.get('bio'),
+        gender: data.get('gender'),
+        minat: data.getAll('minat'),
+        country: data.get('country')
+      };
+      // tampilkan ringkasan sederhana
+      alert('Data terkirim (demo):\\n' + JSON.stringify(out, null, 2));
+    }
+  </script>
+</body>
+</html>
